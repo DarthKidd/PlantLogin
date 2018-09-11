@@ -1,3 +1,12 @@
 <resources>
-    <string name="app_name"></string>
+    <string name="app_name">STUD</string>
+    <string name="student_id">Student ID:</string>
+    <string name="password">Password:</string>
+    <string name="login">Login</string>
+    <string name="no_account">Don\'t have an account?</string>
+    <string name="create_account">Create Account</string>
+    <string name="student_id_reg">Student ID:</string>
+    <string name="email_reg">Email:</string>
+    <string name="password_reg">Password:</string>
+    <string name="confirm_password_reg">Confirm Password:</string>
 </resources>

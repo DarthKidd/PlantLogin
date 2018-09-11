@@ -18,7 +18,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LandingPageActivity"></activity>
+        <activity android:name=".LandingPageActivity" />
+        <activity android:name=".RegisterActivity"></activity>
     </application>
 
 </manifest>

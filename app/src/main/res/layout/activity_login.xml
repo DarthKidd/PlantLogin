@@ -15,7 +15,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logo" />
+        app:srcCompat="@drawable/logo"
+        android:contentDescription="LogoSTUD" />
 
     <TextView
         android:id="@+id/studentIDTextView"
@@ -23,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"
         android:layout_marginStart="24dp"
-        android:text="Student ID:"
+        android:text="@string/student_id"
         android:textColorLink="@color/colorPrimary"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -39,7 +40,7 @@
         android:layout_marginEnd="24dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="12dp"
-        android:text="Password:"
+        android:text="@string/password"
         android:textColorLink="@color/colorPrimary"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -89,7 +90,7 @@
         android:layout_marginEnd="24dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
-        android:text="Login"
+        android:text="@string/login"
         android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -104,12 +105,13 @@
         android:layout_marginBottom="24dp"
         android:layout_marginStart="60dp"
         android:layout_marginTop="24dp"
-        android:text="Don't have an account?"
+        android:text="@string/no_account"
         android:textSize="11sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginButton"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="1.0"
+        tools:text="Don't have an account?" />
 
     <Button
         android:id="@+id/createAccButton"
@@ -118,7 +120,7 @@
         android:layout_marginBottom="16dp"
         android:layout_marginEnd="24dp"
         android:layout_marginTop="24dp"
-        android:text="Create Account"
+        android:text="@string/create_account"
         android:textAllCaps="false"
         android:textSize="11sp"
         app:layout_constraintBottom_toBottomOf="parent"
