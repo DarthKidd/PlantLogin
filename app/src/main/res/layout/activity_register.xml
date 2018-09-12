@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RegisterActivity">
+    tools:context=".activities.RegisterActivity">
 
     <ImageView
         android:id="@+id/imageView2"
@@ -20,12 +20,14 @@
         app:srcCompat="@drawable/logo" />
 
     <TextView
-        android:id="@+id/studentIDRegTextView"
+        android:id="@+id/username_regTextView"
         android:layout_width="104dp"
         android:layout_height="29dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:text="@string/student_id_reg"
+        android:text="@string/user_id_reg"
+        android:textColor="@color/colorTextView"
+        android:textColorLink="@color/colorTextView"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.204"
@@ -33,18 +35,19 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
     <EditText
-        android:id="@+id/studentIDRegEditText"
+        android:id="@+id/usernameRegEditText"
         android:layout_width="261dp"
         android:layout_height="38dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:background="@drawable/border_style"
         android:ems="10"
+        android:textColor="@color/colorText"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/studentIDRegTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/username_regTextView" />
 
     <TextView
         android:id="@+id/emailRegTextView"
@@ -55,10 +58,12 @@
         android:layout_marginTop="12dp"
         android:text="@string/email_reg"
         android:textSize="18sp"
+        android:textColor="@color/colorTextView"
+        android:textColorLink="@color/colorTextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.168"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/studentIDRegEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/usernameRegEditText" />
 
     <EditText
         android:id="@+id/emailEditText"
@@ -68,6 +73,7 @@
         android:layout_marginStart="8dp"
         android:background="@drawable/border_style"
         android:ems="10"
+        android:textColor="@color/colorText"
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
@@ -83,6 +89,8 @@
         android:layout_marginTop="12dp"
         android:text="@string/password_reg"
         android:textSize="18sp"
+        android:textColor="@color/colorTextView"
+        android:textColorLink="@color/colorTextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.19"
         app:layout_constraintStart_toStartOf="parent"
@@ -96,6 +104,7 @@
         android:layout_marginStart="8dp"
         android:background="@drawable/border_style"
         android:ems="10"
+        android:textColor="@color/colorText"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
@@ -111,6 +120,8 @@
         android:layout_marginTop="12dp"
         android:text="@string/confirm_password_reg"
         android:textSize="18sp"
+        android:textColor="@color/colorTextView"
+        android:textColorLink="@color/colorTextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.251"
         app:layout_constraintStart_toStartOf="parent"
@@ -124,6 +135,7 @@
         android:layout_marginStart="8dp"
         android:background="@drawable/border_style"
         android:ems="10"
+        android:textColor="@color/colorText"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
@@ -134,19 +146,48 @@
         android:id="@+id/regButton"
         android:layout_width="wrap_content"
         android:layout_height="51dp"
-        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="Register"
         android:textAllCaps="false"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/confirmPasswordRgEditText"
-        app:layout_constraintVertical_bias="0.135"
         tools:text="Register" />
+
+    <TextView
+        android:id="@+id/alreadyMemberTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/text_already_member"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/regButton"
+        app:layout_constraintVertical_bias="0.75" />
+
+    <Button
+        android:id="@+id/loginRegButton"
+        android:layout_width="63dp"
+        android:layout_height="35dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Login"
+        android:textAllCaps="false"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/alreadyMemberTextView"
+        app:layout_constraintTop_toBottomOf="@+id/regButton"
+        app:layout_constraintVertical_bias="1.0" />
 
 </android.support.constraint.ConstraintLayout>

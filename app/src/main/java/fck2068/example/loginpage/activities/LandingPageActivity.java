@@ -1,7 +1,9 @@
-package fck2068.example.loginpage;
+package fck2068.example.loginpage.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import fck2068.example.loginpage.R;
 
 public class LandingPageActivity extends AppCompatActivity {
 
