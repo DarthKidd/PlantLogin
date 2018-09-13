@@ -4,7 +4,7 @@ package fck2068.example.loginpage.model;
  */
 public class User {
     private int id;
-    private String userId;
+    private String username;
     private String email;
     private String password;
 
@@ -14,11 +14,11 @@ public class User {
     public void setId(int id){
         this.id = id;
     }
-    public String getUserId(){
-        return userId;
+    public String getUserName(){
+        return username;
     }
-    public void setUserId(String userId){
-        this.userId = userId;
+    public void setUserName(String username){
+        this.username = username;
     }
     public String getEmail(){
         return email;
