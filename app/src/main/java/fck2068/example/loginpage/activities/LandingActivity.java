@@ -2,22 +2,22 @@ package fck2068.example.loginpage.activities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 import android.widget.TextView;
 
 import fck2068.example.loginpage.R;
 
 //CLASS to get the extras that we passed
-public class UsersActivity extends AppCompatActivity{
-    private TextView textViewUsername;
+public class LandingActivity extends AppCompatActivity {
+
+    private TextView textViewName;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_users);
+        setContentView(R.layout.activity_landing);
 
-        textViewUsername = (TextView) findViewById(R.id.text1);
+        textViewName = (TextView) findViewById(R.id.welcome);
         String nameFromIntent = getIntent().getStringExtra("EMAIL");
-        textViewUsername.setText("Welcome "+nameFromIntent);
+        textViewName.setText("Welcome " + nameFromIntent);
     }
 }

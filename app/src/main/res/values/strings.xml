@@ -19,4 +19,6 @@
     <string name="error_email_exists">Email already exists</string>
     <string name="error_password_match">Password does not match</string>
     <string name="error_valid_email_password">Wrong username or password</string>
+
+    <string name="welcome">Welcome</string>
 </resources>

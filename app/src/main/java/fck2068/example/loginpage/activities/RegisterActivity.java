@@ -19,61 +19,61 @@ import fck2068.example.loginpage.helper.InputValidation;
 import fck2068.example.loginpage.model.User;
 import fck2068.example.loginpage.sql.DatabaseHelper;
 
-public class RegisterActivity extends AppCompatActivity implements View.OnClickListener{
+public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
+
     private final AppCompatActivity activity = RegisterActivity.this;
 
     private NestedScrollView nestedScrollView;
 
-    private TextInputLayout textInputLayoutUsername;
+    private TextInputLayout textInputLayoutName;
     private TextInputLayout textInputLayoutEmail;
     private TextInputLayout textInputLayoutPassword;
     private TextInputLayout textInputLayoutConfirmPassword;
 
-    private TextInputEditText textInputEditTextUsername;
+    private TextInputEditText textInputEditTextName;
     private TextInputEditText textInputEditTextEmail;
     private TextInputEditText textInputEditTextPassword;
     private TextInputEditText textInputEditTextConfirmPassword;
 
     private AppCompatButton appCompatButtonRegister;
-
-    private AppCompatTextView textViewLinkLogin;
+    private AppCompatTextView appCompatTextViewLoginLink;
 
     private InputValidation inputValidation;
     private DatabaseHelper databaseHelper;
     private User user;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         getSupportActionBar().hide();
-        //pass in three methods
-        initviews();
-        initListenter();
+
+        initViews();
+        initListeners();
         initObjects();
     }
-    //initialize all the views
-    private void initviews(){
+
+    private void initViews(){
         nestedScrollView = (NestedScrollView) findViewById(R.id.nestedScrollView);
 
-        textInputLayoutUsername = (TextInputLayout) findViewById(R.id.textInputLayoutUsername);
-        textInputLayoutUsername = (TextInputLayout) findViewById(R.id.textInputLayoutEmail);
+        textInputLayoutName = (TextInputLayout) findViewById(R.id.textInputLayoutUsername);
+        textInputLayoutEmail = (TextInputLayout) findViewById(R.id.textInputLayoutEmail);
         textInputLayoutPassword = (TextInputLayout) findViewById(R.id.textInputLayoutPassword);
-        textInputLayoutUsername = (TextInputLayout) findViewById(R.id.textInputLayoutConfirmPassword);
+        textInputLayoutConfirmPassword = (TextInputLayout) findViewById(R.id.textInputLayoutConfirmPassword);
 
-        textInputEditTextUsername = (TextInputEditText) findViewById(R.id.textInputEditTextUsername);
-        textInputEditTextUsername = (TextInputEditText) findViewById(R.id.textInputEditTextEmail);
+        textInputEditTextName = (TextInputEditText) findViewById(R.id.textInputEditTextUsername);
+        textInputEditTextEmail = (TextInputEditText) findViewById(R.id.textInputEditTextEmail);
         textInputEditTextPassword = (TextInputEditText) findViewById(R.id.textInputEditTextPassword);
-        textInputEditTextUsername = (TextInputEditText) findViewById(R.id.textInputEditTextConfirmPassword);
+        textInputEditTextConfirmPassword = (TextInputEditText) findViewById(R.id.textInputEditTextConfirmPassword);
 
         appCompatButtonRegister = (AppCompatButton) findViewById(R.id.appCompatButtonRegister);
 
-        textViewLinkLogin = (AppCompatTextView) findViewById(R.id.textViewLinkLogin);
+        appCompatTextViewLoginLink = (AppCompatTextView) findViewById(R.id.appCompatTextViewLoginLink);
     }
 
-    private void initListenter(){
+    private void initListeners(){
         appCompatButtonRegister.setOnClickListener(this);
-        textViewLinkLogin.setOnClickListener(this);
+        appCompatTextViewLoginLink.setOnClickListener(this);
     }
 
     private void initObjects(){
@@ -88,48 +88,56 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             case R.id.appCompatButtonRegister:
                 postDataToSQLite();
                 break;
-            case R.id.textViewLinkLogin:
+            case R.id.appCompatTextViewLoginLink:
                 finish();
                 break;
         }
     }
 
     private void postDataToSQLite(){
-        if(!inputValidation.isInputEditTextFilled(textInputEditTextUsername, textInputLayoutUsername, getString(R.string.error_message_username))){
+        if (!inputValidation.isInputEditTextFilled(textInputEditTextName, textInputLayoutName, getString(R.string.error_message_username))) {
             return;
         }
-        if(!inputValidation.isInputEditTextFilled(textInputEditTextEmail, textInputLayoutEmail, getString(R.string.error_message_email))){
+        if (!inputValidation.isInputEditTextFilled(textInputEditTextEmail, textInputLayoutEmail, getString(R.string.error_message_email))) {
             return;
         }
-        if(!inputValidation.isInputEditTextEmail(textInputEditTextEmail, textInputLayoutEmail, getString(R.string.error_message_email))){
+        if (!inputValidation.isInputEditTextEmail(textInputEditTextEmail, textInputLayoutEmail, getString(R.string.error_message_email))) {
             return;
         }
-        if(inputValidation.isInputEditTextFilled(textInputEditTextPassword, textInputLayoutPassword, getString(R.string.error_message_password))){
+        if (!inputValidation.isInputEditTextFilled(textInputEditTextPassword, textInputLayoutPassword, getString(R.string.error_message_password))) {
             return;
         }
-        if(!inputValidation.isInputEditTextMatches(textInputEditTextPassword, textInputEditTextConfirmPassword, textInputLayoutConfirmPassword, getString(R.string.error_password_match))){
+        if (!inputValidation.isInputEditTextMatches(textInputEditTextPassword, textInputEditTextConfirmPassword,
+                textInputLayoutConfirmPassword, getString(R.string.error_password_match))) {
             return;
         }
 
-        if(!databaseHelper.checkUser(textInputEditTextEmail.getText().toString().trim())){
-            user.setUserName(textInputEditTextUsername.getText().toString().trim());
+        if (!databaseHelper.checkUser(textInputEditTextEmail.getText().toString().trim())) {
+
+            user.setUserName(textInputEditTextName.getText().toString().trim());
             user.setEmail(textInputEditTextEmail.getText().toString().trim());
             user.setPassword(textInputEditTextPassword.getText().toString().trim());
 
             databaseHelper.addUser(user);
 
-            //Snack bar to show success message that record saved successfully
+            // Snack Bar to show success message that record saved successfully
             Snackbar.make(nestedScrollView, getString(R.string.success_message), Snackbar.LENGTH_LONG).show();
             emptyInputEditText();
-        } else{
+
+
+        } else {
+            // Snack Bar to show error message that record already exists
             Snackbar.make(nestedScrollView, getString(R.string.error_email_exists), Snackbar.LENGTH_LONG).show();
         }
+
+
     }
 
-    private void emptyInputEditText() {
-        textInputEditTextUsername.setText(null);
+    private void emptyInputEditText(){
+        textInputEditTextName.setText(null);
         textInputEditTextEmail.setText(null);
         textInputEditTextPassword.setText(null);
         textInputEditTextConfirmPassword.setText(null);
     }
+
 }

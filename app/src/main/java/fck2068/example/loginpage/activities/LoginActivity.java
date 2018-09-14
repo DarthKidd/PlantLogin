@@ -10,14 +10,13 @@ import android.os.Bundle;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatTextView;
 import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
 
 import fck2068.example.loginpage.R;
 import fck2068.example.loginpage.helper.InputValidation;
 import fck2068.example.loginpage.sql.DatabaseHelper;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
+
     private final AppCompatActivity activity = LoginActivity.this;
 
     private NestedScrollView nestedScrollView;
@@ -40,14 +39,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         getSupportActionBar().hide();
-        //pass in three methods
-        initviews();
-        initListenter();
+
+        initViews();
+        initListeners();
         initObjects();
     }
-
-    private void initviews(){
-        //here fields are initialised, NestedScrollView etc
+    private void initViews(){
         nestedScrollView = (NestedScrollView) findViewById(R.id.nestedScrollView);
 
         textInputLayoutUsername = (TextInputLayout) findViewById(R.id.textInputLayoutUsername);
@@ -61,12 +58,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         textViewLinkRegister = (AppCompatTextView) findViewById(R.id.textViewLinkRegister);
     }
 
-    private void initListenter() {
+    private void initListeners(){
         appCompatButtonLogin.setOnClickListener(this);
         textViewLinkRegister.setOnClickListener(this);
     }
 
-    private void initObjects() {
+    private void initObjects(){
         databaseHelper = new DatabaseHelper(activity);
         inputValidation = new InputValidation(activity);
     }
@@ -78,26 +75,30 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 verifyFromSQLite();
                 break;
             case R.id.textViewLinkRegister:
-                Intent intentReg = new Intent(getApplicationContext(), RegisterActivity.class);
-                startActivity(intentReg);
+                Intent intentRegister = new Intent(getApplicationContext(), RegisterActivity.class);
+                startActivity(intentRegister);
                 break;
         }
     }
 
-    private void verifyFromSQLite() {
-        if(!inputValidation.isInputEditTextFilled(textInputEditTextUsername, textInputLayoutUsername, getString(R.string.error_message_username))){
+    private void verifyFromSQLite(){
+        if (!inputValidation.isInputEditTextFilled(textInputEditTextUsername, textInputLayoutUsername, getString(R.string.error_message_email))) {
             return;
         }
-        if(!inputValidation.isInputEditTextFilled(textInputEditTextPassword, textInputLayoutPassword, getString(R.string.error_message_password))){
+        if (!inputValidation.isInputEditTextEmail(textInputEditTextUsername, textInputLayoutUsername, getString(R.string.error_message_email))) {
+                return;
+        }
+        if (!inputValidation.isInputEditTextFilled(textInputEditTextPassword, textInputLayoutPassword, getString(R.string.error_message_email))) {
             return;
         }
 
-        if(databaseHelper.checkUser(textInputEditTextUsername.getText().toString().trim(), textInputEditTextPassword.getText().toString().trim())){
-            Intent accountsIntent = new Intent(activity, UsersActivity.class);
-            accountsIntent.putExtra("USERNAME", textInputEditTextUsername.getText().toString().trim());
+        if (databaseHelper.checkUser(textInputEditTextUsername.getText().toString().trim()
+                , textInputEditTextPassword.getText().toString().trim())) {
+            Intent accountsIntent = new Intent(activity, LandingActivity.class);
+            accountsIntent.putExtra("EMAIL", textInputEditTextUsername.getText().toString().trim());
             emptyInputEditText();
             startActivity(accountsIntent);
-        }else{
+        } else {
             Snackbar.make(nestedScrollView, getString(R.string.error_valid_email_password), Snackbar.LENGTH_LONG).show();
         }
     }
